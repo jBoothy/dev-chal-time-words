@@ -54,10 +54,10 @@ const timeWord=(time)=>{
     let [hour,minute] = [...time.split(`:`)]
     parseInt(hour)
     parseInt(minute)
-    console.log(hour,minute)
+    // console.log(hour,minute)
     if (hour>=12){
         if(minute===0){
-        return `${ones[hour]} oclock PM`
+        return `${ones[hour]} o'clock PM`
         }else{
             if(minute>=20){
                 let [ten, one] = [...minute.split(``)]
@@ -71,7 +71,7 @@ const timeWord=(time)=>{
         }
     }else{
         if(minute==0){
-            return `${ones[+hour]} oclock AM`
+            return `${ones[+hour]} o'clock AM`
         }else{
             if(minute>=20){
                 let [ten, one] = [...minute.split(``)]
