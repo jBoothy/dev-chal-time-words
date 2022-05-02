@@ -43,17 +43,57 @@ timeWord("23:23")
 */
 
 const timeWord=(time)=>{
-
+    const ones =['', 'one', 'two', 'three', 'four', 'five', 'six','seven', 'eight', 'nine', 'ten', 'eleven', 'twelve','thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen','eighteen', 'nineteen']
+    const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty']
+    if (time === '00:00') {
+        return 'midnight'
+    }
+    if (time === '12:00') {
+        return 'noon'
+    }
+    let [hour,minute] = [...time.split(`:`)]
+    parseInt(hour)
+    parseInt(minute)
+    console.log(hour,minute)
+    if (hour>=12){
+        if(minute===0){
+        return `${ones[hour]} oclock PM`
+        }else{
+            if(minute>=20){
+                let [ten, one] = [...minute.split(``)]
+                return `${ones[hour]} ${tens[ten]}${ones[one]} PM`
+            }else if (minute >=10){
+                return`${ones[hour]} ${ones[minute]} PM`
+            }else{
+                let [ten, one] = [...minute.split(``)]
+                return`${ones[hour]} oh ${ones[one]} PM`
+            }
+        }
+    }else{
+        if(minute==0){
+            return `${ones[+hour]} oclock AM`
+        }else{
+            if(minute>=20){
+                let [ten, one] = [...minute.split(``)]
+                return `${ones[+hour]} ${tens[ten]}${ones[one]} AM`
+            }else if (minute >=10){
+                return`${ones[+hour]} ${ones[minute]} AM`
+            }else{
+                let [ten, one] = [...minute.split(``)]
+                return`${ones[+hour]} oh ${ones[one]} AM`
+            }
+        }
+    }
 }
 
-console.log(timeWord("00:00"))
-console.log(timeWord("12:00"))
-console.log(timeWord("01:00"))
-console.log(timeWord("06:01"))
-console.log(timeWord("06:10"))
-console.log(timeWord("06:18"))
-console.log(timeWord("06:30"))
-console.log(timeWord("10:34"))
-console.log(timeWord("00:12"))
-console.log(timeWord("12:09"))
-console.log(timeWord("23:23"))
+console.log(timeWord("00:00")) // 'midnight'
+console.log(timeWord("12:00")) // 'noon'
+console.log(timeWord("01:00")) // "one o'clock am"
+console.log(timeWord("06:01")) // 'six oh one am'
+console.log(timeWord("06:10")) // 'six ten am'
+console.log(timeWord("06:18")) // 'six eighteen am'
+console.log(timeWord("06:30")) // 'six thirty am'
+console.log(timeWord("10:34")) // 'ten thirty four am'
+console.log(timeWord("00:12")) // 'twelve twelve am'
+console.log(timeWord("12:09")) // 'twelve oh nine pm'
+console.log(timeWord("23:23")) // 'eleven twenty three pm'
